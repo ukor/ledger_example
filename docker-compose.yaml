@@ -1,0 +1,79 @@
+
+version: '3.8'
+services:
+  ledger_dev_api:
+    container_name: ledger-api-dev
+    build:
+      context: ./
+      dockerfile: ./docker/Dockerfile
+    environment:
+      - MONGO_NAME=ledger_dev
+      - MONGO_USER=root
+      - MONGO_PASSWORD=passwordRoot
+      - MONGO_HOST=mongodb:27017
+      - JWT_ALGORITHM=HS512
+      - JWT_SECRET=secretuponsecretWT
+    ports:
+      - '3012:3012'
+    depends_on:
+      - mongodb
+    volumes:
+      - .:/srv
+      - /srv/node_modules
+    restart: unless-stopped
+    networks:
+      - ledger-network
+
+  # start the mongodb service as container
+  mongodb:
+    image: mongo:6.0
+    container_name: ledger-mongo-dev
+    restart: unless-stopped
+    ports:
+      - '27017:27017'
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongo localhost:27017/test --quiet
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - ledger-network
+    volumes:
+      - mongo_data:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=admin
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=passwordRoot
+
+  jaeger:
+    container_name: jaeger
+    image: jaegertracing/jaeger:2.5.0
+    ports:
+      - "16686:16686" # Jaeger UI
+      - "14268:14268" # Collector endpoint
+      - "4317:4317"
+      - "4318:4318"
+      - "5778:5778"
+      - "9411:9411"
+    volumes:
+      - "./jaeger.yaml:/jaeger/config.yaml" # Replace with your actual path
+    networks:
+        - ledger-network
+    command: ["--config", "/jaeger/config.yaml"]
+
+  aspire_dashboard:
+    container_name: aspire_dashboard
+    image: mcr.microsoft.com/dotnet/aspire-dashboard:9.0
+    ports:
+      - "18888:18888" # Jaeger UI
+      - "14270:14268" # Collector endpoint
+      - "4319:18889"
+    networks:
+        - ledger-network
+
+networks:
+  ledger-network:
+
+volumes:
+  mongo_data:
+

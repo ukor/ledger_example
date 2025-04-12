@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "target": "es2022",
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    "isolatedModules": true,
+
+    /* https://www.totaltypescript.com/books/total-typescript-essentials/configuring-typescript#verbatimmodulesyntax-with-esm-and-commonjs */
+    "verbatimModuleSyntax": false,
+
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+
+    "module": "NodeNext",
+    "outDir": "dist",
+    "sourceMap": true,
+
+    "declaration": true,
+
+
+    "lib": ["es2022"]
+  }
+}
