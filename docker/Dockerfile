@@ -12,18 +12,19 @@ COPY package*.json ./
 
 COPY . .
 
-FROM base AS dev-deps
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
+# FROM base AS dev-deps
+# RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 
-FROM base AS build
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
+# FROM base AS build
+RUN pnpm install 
+
 RUN pnpm run build
 
 FROM base
-COPY --from=dev-deps /srv/node_modules /srv/node_modules
-COPY --from=build /srv/dist /srv/dist
+# COPY --from=dev-deps /srv/node_modules /srv/node_modules
+# COPY --from=build /srv/dist /srv/dist
 
-COPY Makefile Makefile
+# COPY Makefile Makefile
 
 # RUN pnpm install
 

@@ -1,21 +1,25 @@
-require("dotenv").config();
+// require("dotenv").config();
 
 const env = process.env;
 
 export type AppConfig = {
   port: string;
   appName: string;
-  databaseName: string;
-  databaseHost: string;
-  databaseUserName: string;
-  databasePassword: string;
+  mongoName: string;
+  mongoHost: string;
+  mongoUserName: string;
+  mongoPassword: string;
+  jwtSecret: string;
+  jwtAlgorithm: string | "HS256" | "HS512";
 };
 
 export const AppConfig: AppConfig = {
   port: env?.port ?? "3012",
   appName: "ledger",
-  databaseName: env?.databaseName ?? "",
-  databaseHost: env?.databaseHost ?? "",
-  databaseUserName: env?.databaseUserName ?? "",
-  databasePassword: env?.databasePassword ?? "",
+  mongoName: env?.MONGO_NAME ?? "",
+  mongoHost: env?.MONGO_HOST ?? "",
+  mongoUserName: env?.MONGO_USER ?? "",
+  mongoPassword: env?.MONGO_PASSWORD ?? "",
+  jwtSecret: env?.JWT_SECRET ?? "",
+  jwtAlgorithm: env?.JWT_ALGORITHM ?? "HS256",
 };
