@@ -24,7 +24,7 @@ export default async function(fastify: FastifyInstance) {
         security: [{ jwt: [], uid: [], role: [], did: [] }],
         body: SignUpCredentials,
         description: "Allows user join the ledger network",
-        tags: ["autheentication"],
+        tags: ["authentication"],
         response: {
           "2xx": HttpResponseDto,
           "3xx": HttpErrorResponseDto,
