@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "test": "jest",
+    "test": "pnpm --recursive exec jest --passWithNoTests",
     "prebuild": "rimraf dist ",
     "build": "tsc -b ",
     "start:dev": " tsc-watch --onSuccess 'node ./dist/server.js --enable-source-maps --trace-warnings isLocal'"
@@ -31,12 +31,14 @@
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
+    "@shelf/jest-mongodb": "^5.1.0",
     "@types/jest": "^29.5.14",
     "@types/jsonwebtoken": "^9.0.9",
     "@types/node": "^22.14.1",
     "jest": "^29.7.0",
     "rimraf": "^6.0.1",
     "ts-jest": "^29.3.2",
+    "ts-node": "^10.9.2",
     "tsc-watch": "^6.2.1",
     "tsup": "^8.4.0",
     "typescript": "^5.8.3"

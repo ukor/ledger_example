@@ -27,7 +27,7 @@
     "lib": ["es2022"]
   },
 
-  "exclude": ["node_modules", "pm2.config.js", "**/*.test.*", "**/__mocks__/*", "**/__tests__/*"],
-	"include": ["./src/**/*.ts", "src/jobs/super_vendor.ts"]
+  "exclude": ["node_modules", "pm2.config.js", "**/*.test.*", "**/*.mock.*", "**/__mocks__/*", "**/__tests__/*", "jest.config.ts"],
+	"include": ["./src/**/*.ts"]
 
 }

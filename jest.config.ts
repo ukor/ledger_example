@@ -12,6 +12,8 @@ const config: JestConfigWithTsJest = {
 
   coverageProvider: "v8",
 
+  preset: "@shelf/jest-mongodb",
+
   // A list of reporter names that Jest uses when writing coverage reports
   coverageReporters: ["json", "text", "lcov", "clover"],
 

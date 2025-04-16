@@ -1,13 +1,13 @@
 import { type Db, ObjectId } from "mongodb";
-import type { Database } from "../../../commons/dtos/database.dto.js";
-import { ErrorName } from "../../../commons/dtos/error.dto.js";
-import { Exception } from "../../../commons/exceptions/index.js";
-import { AppConfig } from "../../../configs/index.js";
+import type { Database } from "../../../commons/dtos/database.dto";
+import { ErrorName } from "../../../commons/dtos/error.dto";
+import { Exception } from "../../../commons/exceptions";
+import { AppConfig } from "../../../configs/index";
 import type {
   AuthenticationEntity,
   AuthentiCredentials,
-} from "../dtos/auth_credentials.dto.js";
-import type { AuthenticationCredentialsEntity } from "../dtos/user.dto.js";
+} from "../dtos/auth_credentials.dto";
+import type { AuthenticationCredentialsEntity } from "../dtos/user.dto";
 
 export interface iAuthRepository {
   create: (credentials: AuthentiCredentials) => Promise<ObjectId>;
